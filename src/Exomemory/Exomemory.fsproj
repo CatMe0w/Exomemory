@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk.Web">
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <AssemblyName>Exomemory.App</AssemblyName>
+        <EnableDefaultContentItems>false</EnableDefaultContentItems>
+        <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+        <ContainerImageName>Exomemory</ContainerImageName>
+    </PropertyGroup>
+    <ItemGroup>
+        <Compile Include="Models.fs"/>
+        <Compile Include="Dtos.fs" />
+        <Compile Include="Queries.fs" />
+        <Compile Include="HttpHandlers.fs"/>
+        <Compile Include="Program.fs"/>
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="web.config" CopyToOutputDirectory="PreserveNewest"/>
+        <None Include="paket.references"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="appsettings.json" CopyToOutputDirectory="PreserveNewest"/>
+    </ItemGroup>
+    <Import Project="..\..\.paket\Paket.Restore.targets"/>
+</Project>

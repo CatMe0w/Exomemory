@@ -1,0 +1,9 @@
+Microsoft.NET.Test.Sdk
+Microsoft.AspNetCore.TestHost
+xunit
+xunit.runner.visualstudio
+FSharp.Core
+Microsoft.AspNetCore.Authentication.JwtBearer
+Npgsql.FSharp
+FSharp.Json
+Microsoft.FSharpLu.Json

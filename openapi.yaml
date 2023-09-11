@@ -1,0 +1,320 @@
+openapi: 3.1.0
+info:
+  title: Exomemory
+  version: 1.0.0
+paths:
+  /overview:
+    get:
+      summary: Overview
+      description: List all rooms and show recent 500 messages of all rooms
+      operationId: overview
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  rooms:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Room'
+                  messages:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Message'
+  /inspect/room/{roomId}:
+    get:
+      summary: Inspect room
+      description: Return room info
+      operationId: inspectRoom
+      parameters:
+        - name: roomId
+          in: path
+          description: Room id. Bigger than 0 means private chat, smaller than 0 means group
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Room'
+  /search/usernames?keyword={keyword}&page={page}&timeafter={timeAfter}&timebefore={timeBefore}&roomid={roomId}:
+    get:
+      summary: Search usernames
+      description: Search usernames and return recent 500 messages of matched users
+      operationId: searchUsernames
+      parameters:
+        - name: keyword
+          in: query
+          description: Search keyword
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          description: Page number
+          required: false
+          schema:
+            type: integer
+        - name: timeAfter
+          in: query
+          description: Unix timestamp in milliseconds. Limit search results to messages after this time
+          required: false
+          schema:
+              type: integer
+        - name: timeBefore
+          in: query
+          description: Unix timestamp in milliseconds. Limit search results to messages before this time
+          required: false
+          schema:
+              type: integer
+        - name: roomId
+          in: query
+          description: Room id. Limit search results to messages in this room
+          required: false
+          schema:
+              type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Messages'
+  /search/messages?keyword={keyword}&page={page}&timeafter={timeAfter}&timebefore={timeBefore}&roomid={roomId}:
+    get:
+      summary: Search messages
+      description: Search messages and return recent 500 messages
+      operationId: searchMessages
+      parameters:
+        - name: keyword
+          in: query
+          description: Search keyword
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          description: Page number
+          required: false
+          schema:
+            type: integer
+        - name: timeAfter
+          in: query
+          description: Unix timestamp in milliseconds. Limit search results to messages after this time
+          required: false
+          schema:
+            type: integer
+        - name: timeBefore
+          in: query
+          description: Unix timestamp in milliseconds. Limit search results to messages before this time
+          required: false
+          schema:
+            type: integer
+        - name: roomId
+          in: query
+          description: Room id. Limit search results to messages in this room
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Messages'
+  /lookup/user?id={id}&page={page}&timeafter={timeAfter}&timebefore={timeBefore}&roomid={roomId}:
+    get:
+      summary: Lookup user
+      description: Return recent 500 messages of this user
+      operationId: lookupUser
+      parameters:
+        - name: id
+          in: query
+          description: QQ number aka id
+          required: true
+          schema:
+            type: integer
+        - name: page
+          in: query
+          description: Page number
+          required: false
+          schema:
+            type: integer
+        - name: timeAfter
+          in: query
+          description: Unix timestamp in milliseconds. Limit search results to messages after this time
+          required: false
+          schema:
+            type: integer
+        - name: timeBefore
+          in: query
+          description: Unix timestamp in milliseconds. Limit search results to messages before this time
+          required: false
+          schema:
+            type: integer
+        - name: roomId
+          in: query
+          description: Room id. Limit search results to messages in this room
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Messages'
+  /lookup/message?id={messageId}&pagination={pagination}:
+    get:
+      summary: Lookup message
+      description: Return messages with recent 250 messages before the given message id and 250 messages after the given message id, 500 messages in total
+      operationId: lookupMessage
+      parameters:
+        - name: messageId
+          in: query
+          description: Message id looks like base64
+          required: true
+          schema:
+            type: string
+        - name: pagination
+          in: query
+          description: prev - with the given message id as the last message, next - with the given message id as the first message
+          required: false
+          schema:
+            type: string
+            enum:
+            - prev
+            - next
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Messages'
+  /lookup/room?id={roomId}&page={page}&timeafter={timeAfter}&timebefore={timeBefore}:
+    get:
+      summary: Lookup room
+      description: Return recent 500 messages of this room
+      operationId: lookupRoom
+      parameters:
+        - name: roomId
+          in: query
+          description: Room id
+          required: true
+          schema:
+            type: integer
+        - name: page
+          in: query
+          description: Page number
+          required: false
+          schema:
+            type: integer
+        - name: timeAfter
+          in: query
+          description: Unix timestamp in milliseconds. Limit search results to messages after this time
+          required: false
+          schema:
+            type: integer
+        - name: timeBefore
+          in: query
+          description: Unix timestamp in milliseconds. Limit search results to messages before this time
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Messages'
+components:
+  schemas:
+    File:
+      type: object
+      properties:
+        type:
+          type: string
+        size:
+          type: integer
+        url:
+          type: string
+        name:
+          type: string
+        fid:
+          type: string
+    Message:
+      type: object
+      properties:
+        id:
+          type: string
+        senderId:
+          type: string
+        username:
+          type: string
+        content:
+          type: string
+        code:
+          type: string
+        role:
+          type: string
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/File'
+        time:
+          type: string
+        replyMessage:
+          type: object
+          properties:
+            id:
+              type: string
+            username:
+              type: string
+            content:
+              type: string
+            files:
+              type: array
+              items:
+                $ref: '#/components/schemas/File'
+        isDeleted:
+          type: boolean
+        isSystemMessage:
+          type: boolean
+        isSelfDestruct:
+          type: boolean
+        title:
+          type: string
+        roomId:
+          type: integer
+    Messages:
+      type: array
+      items:
+        $ref: '#/components/schemas/Message'
+    Room:
+      type: object
+      properties:
+        roomId:
+          type: integer
+        name:
+          type: string
+        unreadCount:
+          type: integer
+        lastMessageTime:
+          type: integer
+        lastMessage:
+          type: object
+          properties:
+            content:
+              type: string
+            username:
+              type: string

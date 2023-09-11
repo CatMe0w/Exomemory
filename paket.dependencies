@@ -1,0 +1,13 @@
+storage: none
+framework: auto-detect
+source https://api.nuget.org/v3/index.json
+
+nuget FSharp.Json
+nuget Giraffe ~> 6.0.0
+nuget Microsoft.AspNetCore.Authentication.JwtBearer
+nuget Microsoft.FSharpLu.Json
+nuget Microsoft.NET.Test.Sdk
+nuget Microsoft.AspNetCore.TestHost
+nuget Npgsql.FSharp
+nuget xunit
+nuget xunit.runner.visualstudio
