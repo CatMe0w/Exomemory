@@ -2,7 +2,3 @@ Microsoft.NET.Test.Sdk
 Microsoft.AspNetCore.TestHost
 xunit
 xunit.runner.visualstudio
-FSharp.Core
-Npgsql.FSharp
-FSharp.Json
-Microsoft.FSharpLu.Json
