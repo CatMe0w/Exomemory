@@ -1,5 +1,4 @@
 Giraffe
-Microsoft.AspNetCore.Authentication.JwtBearer
 Npgsql.FSharp
 FSharp.Json
 Microsoft.FSharpLu.Json

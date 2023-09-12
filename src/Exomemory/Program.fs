@@ -4,8 +4,6 @@ open System
 open Newtonsoft.Json
 open Newtonsoft.Json.Serialization
 open Microsoft.FSharpLu.Json
-// open Microsoft.AspNetCore.Authentication
-// open Microsoft.AspNetCore.Authentication.JwtBearer
 open Microsoft.AspNetCore.Builder
 open Microsoft.AspNetCore.Cors.Infrastructure
 open Microsoft.AspNetCore.Hosting
@@ -19,9 +17,6 @@ open Exomemory.HttpHandlers
 // ---------------------------------
 // Web app
 // ---------------------------------
-
-// let authenticate =
-//     requiresAuthentication (challenge JwtBearerDefaults.AuthenticationScheme)
 
 let webApp =
     choose
@@ -72,20 +67,8 @@ let configureApp (app: IApplicationBuilder) =
     (match env.IsDevelopment() with
      | true -> app.UseDeveloperExceptionPage()
      | false -> app.UseGiraffeErrorHandler(errorHandler).UseHttpsRedirection())
-        // .UseAuthentication()
         .UseCors(configureCors)
         .UseGiraffe(webApp)
-
-// let authenticationOptions (o: AuthenticationOptions) =
-//     o.DefaultAuthenticateScheme <- JwtBearerDefaults.AuthenticationScheme
-//     o.DefaultChallengeScheme <- JwtBearerDefaults.AuthenticationScheme
-
-// let jwtBearerOptions (settings: IConfiguration) (cfg: JwtBearerOptions) =
-//     cfg.SaveToken <- true
-//     cfg.IncludeErrorDetails <- true
-//     cfg.Authority <- settings["Jwt:Domain"]
-//     cfg.Audience <- settings["Jwt:Audience"]
-//     cfg.TokenValidationParameters <- TokenValidationParameters(ValidIssuer = settings["Jwt:ValidIssuer"])
 
 let configureAppConfiguration (context: WebHostBuilderContext) (config: IConfigurationBuilder) =
     config
@@ -95,13 +78,7 @@ let configureAppConfiguration (context: WebHostBuilderContext) (config: IConfigu
     |> ignore
 
 let configureServices (services: IServiceCollection) =
-    // let sp = services.BuildServiceProvider()
-    // let settings = sp.GetService<IConfiguration>()
-
-    services.AddCors().AddGiraffe()
-    // .AddAuthentication(authenticationOptions)
-    // .AddJwtBearer(Action<JwtBearerOptions>(settings |> jwtBearerOptions))
-    |> ignore
+    services.AddCors().AddGiraffe() |> ignore
 
     // to make the JSON serializer happy with Option types -- unwraps them automatically
     let jsonSerializerSettings =
