@@ -23,7 +23,8 @@ let webApp =
         [ GET
           >=> authenticate
           >=> choose
-              [ route "/overview" >=> handleGetOverview
+              [ route "/version" >=> handleGetVersion
+                route "/overview" >=> handleGetOverview
                 routef "/inspect/room/%d" handleGetInspectRoom
                 subRoute
                     "/search"

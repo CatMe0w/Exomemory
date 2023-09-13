@@ -1,6 +1,7 @@
 module Exomemory.HttpHandlers
 
 open System
+open System.Reflection
 open Microsoft.Extensions.Configuration
 open Microsoft.AspNetCore.Http
 open FSharp.Json
@@ -63,6 +64,13 @@ let authenticate =
             let accessDenied = setStatusCode 401
 
             return! authorizeRequest validateRequest accessDenied next ctx
+        }
+    
+let handleGetVersion =
+    fun (next: HttpFunc) (ctx: HttpContext) ->
+        task {
+            let version = Assembly.GetExecutingAssembly().GetName().Version.ToString()
+            return! text version next ctx
         }
 
 let handleGetOverview =
