@@ -12,16 +12,18 @@ EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Exomemory.Tests", "tests\Exomemory.Tests\Exomemory.Tests.fsproj", "{DB284F96-3FC7-49A0-8667-18732B962F3E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_root", "_root", "{625E3CAC-600B-450D-BF54-E3059450591A}"
-ProjectSection(SolutionItems) = preProject
-	build.bat = build.bat
-	build.sh = build.sh
-	paket.dependencies = paket.dependencies
-	paket.lock = paket.lock
-	README.md = README.md
-	LICENSE = LICENSE
-	openapi.yaml = openapi.yaml
-	.gitignore = .gitignore
-EndProjectSection
+	ProjectSection(SolutionItems) = preProject
+		build.bat = build.bat
+		build.sh = build.sh
+		paket.dependencies = paket.dependencies
+		paket.lock = paket.lock
+		README.md = README.md
+		LICENSE = LICENSE
+		openapi.yaml = openapi.yaml
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exomemory.Client", "src\Exomemory.Client\Exomemory.Client.csproj", "{38F1D426-D953-4D6C-A136-89CB2A9BE069}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +40,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{C56E75B2-5671-46E1-8594-6529135E7082} = {B8CB57F5-C87C-48A1-A3DC-BF5BBA95EB25}
 		{DB284F96-3FC7-49A0-8667-18732B962F3E} = {E6D01694-CB7C-4226-99EE-103B75B923FB}
+		{38F1D426-D953-4D6C-A136-89CB2A9BE069} = {B8CB57F5-C87C-48A1-A3DC-BF5BBA95EB25}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{C56E75B2-5671-46E1-8594-6529135E7082}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -64,5 +67,17 @@ Global
 		{DB284F96-3FC7-49A0-8667-18732B962F3E}.Release|x64.Build.0 = Release|Any CPU
 		{DB284F96-3FC7-49A0-8667-18732B962F3E}.Release|x86.ActiveCfg = Release|Any CPU
 		{DB284F96-3FC7-49A0-8667-18732B962F3E}.Release|x86.Build.0 = Release|Any CPU
+		{38F1D426-D953-4D6C-A136-89CB2A9BE069}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38F1D426-D953-4D6C-A136-89CB2A9BE069}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38F1D426-D953-4D6C-A136-89CB2A9BE069}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{38F1D426-D953-4D6C-A136-89CB2A9BE069}.Debug|x64.Build.0 = Debug|Any CPU
+		{38F1D426-D953-4D6C-A136-89CB2A9BE069}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{38F1D426-D953-4D6C-A136-89CB2A9BE069}.Debug|x86.Build.0 = Debug|Any CPU
+		{38F1D426-D953-4D6C-A136-89CB2A9BE069}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38F1D426-D953-4D6C-A136-89CB2A9BE069}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38F1D426-D953-4D6C-A136-89CB2A9BE069}.Release|x64.ActiveCfg = Release|Any CPU
+		{38F1D426-D953-4D6C-A136-89CB2A9BE069}.Release|x64.Build.0 = Release|Any CPU
+		{38F1D426-D953-4D6C-A136-89CB2A9BE069}.Release|x86.ActiveCfg = Release|Any CPU
+		{38F1D426-D953-4D6C-A136-89CB2A9BE069}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

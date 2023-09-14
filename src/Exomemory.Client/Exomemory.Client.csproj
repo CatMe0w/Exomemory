@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <RootNamespace>Exomemory.Client</RootNamespace>
+  </PropertyGroup>
+  <Target Name="GenerateNSwagClient">
+    <ItemGroup>
+      <NSwagInputFiles Include="nswag.json" />
+      <NSwagInputFiles Include="../../openapi.yaml" />
+    </ItemGroup>
+    <PropertyGroup>
+      <ClientName>ExomemoryTesting</ClientName>
+      <GeneratedSwaggerClientFile Condition="'$(GeneratedSwaggerClientFile)' ==''">$(IntermediateOutputPath)$(MSBuildProjectName).$(ClientName)Client.cs</GeneratedSwaggerClientFile>
+      <NSwagGenCacheFile>$(IntermediateOutputPath)$(MSBuildProjectName).nswag.cache</NSwagGenCacheFile>
+    </PropertyGroup>
+    <ReadLinesFromFile File="$(NSwagGenCacheFile)">
+      <Output TaskParameter="Lines" ItemName="NSwagGenCacheContents" />
+    </ReadLinesFromFile>
+    <PropertyGroup>
+      <NSwagGenCache>%(NSwagGenCacheContents.Identity)</NSwagGenCache>
+    </PropertyGroup>
+    <GetFileHash Files="@(NSwagInputFiles)" Algorithm="SHA256" HashEncoding="hex">
+      <Output TaskParameter="Items" ItemName="NSwagInputFilesHash" />
+    </GetFileHash>
+    <Hash ItemsToHash="@(NSwagInputFilesHash->'%(FileHash)')">
+      <Output TaskParameter="HashResult" PropertyName="NSwagInputHash" />
+    </Hash>
+    <Exec Condition=" '$(NSwagGenCache)' != '$(NSwagInputHash)' Or !Exists('$(GeneratedSwaggerClientFile)') " Command="dotnet nswag run nswag.json /variables:ClientName=$(ClientName),ClientNamespace=$(RootNamespace),GeneratedSwaggerClientFile=$(GeneratedSwaggerClientFile)" />
+    <WriteLinesToFile Condition=" '$(NSwagGenCache)' != '$(NSwagInputHash)' " File="$(NSwagGenCacheFile)" Lines="$(NSwagInputHash)" Overwrite="true" WriteOnlyWhenDifferent="true" />
+  </Target>
+  <Target Name="IncludeNSwagClient" BeforeTargets="CoreCompile" DependsOnTargets="GenerateNSwagClient">
+    <ItemGroup Condition="Exists('$(GeneratedSwaggerClientFile)')">
+      <Compile Include="$(GeneratedSwaggerClientFile)" />
+      <FileWrites Include="$(GeneratedSwaggerClientFile)" />
+    </ItemGroup>
+  </Target>
+  <ItemGroup>
+    <None Include="paket.references" />
+  </ItemGroup>
+  <Import Project="..\..\.paket\Paket.Restore.targets" />
+</Project>

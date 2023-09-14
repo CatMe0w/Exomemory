@@ -7,6 +7,12 @@
       "commands": [
         "paket"
       ]
+    },
+    "nswag.consolecore": {
+      "version": "13.20.0",
+      "commands": [
+        "nswag"
+      ]
     }
   }
 }
