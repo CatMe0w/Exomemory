@@ -1,4 +1,4 @@
-module Exomemory.Dtos
+module Exomemory.Server.Dtos
 
 open FSharp.Json
 

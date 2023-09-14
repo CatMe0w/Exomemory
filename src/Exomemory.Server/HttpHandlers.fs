@@ -1,4 +1,4 @@
-module Exomemory.HttpHandlers
+module Exomemory.Server.HttpHandlers
 
 open System
 open System.Reflection
@@ -6,9 +6,9 @@ open Microsoft.Extensions.Configuration
 open Microsoft.AspNetCore.Http
 open FSharp.Json
 open Giraffe
-open Exomemory.Models
-open Exomemory.Dtos
-open Exomemory.Queries
+open Exomemory.Server.Models
+open Exomemory.Server.Dtos
+open Exomemory.Server.Queries
 
 let jsonConfig = JsonConfig.create (jsonFieldNaming = Json.lowerCamelCase)
 

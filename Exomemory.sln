@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B8CB57F5-C87
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{E6D01694-CB7C-4226-99EE-103B75B923FB}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Exomemory", "src\Exomemory\Exomemory.fsproj", "{C56E75B2-5671-46E1-8594-6529135E7082}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Exomemory.Server", "src\Exomemory.Server\Exomemory.Server.fsproj", "{C56E75B2-5671-46E1-8594-6529135E7082}"
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Exomemory.Tests", "tests\Exomemory.Tests\Exomemory.Tests.fsproj", "{DB284F96-3FC7-49A0-8667-18732B962F3E}"
 EndProject

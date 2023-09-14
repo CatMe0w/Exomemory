@@ -1,7 +1,7 @@
-module Exomemory.Queries
+module Exomemory.Server.Queries
 
 open Npgsql.FSharp
-open Exomemory.Models
+open Exomemory.Server.Models
 
 let makeMessageModel =
     fun (r: RowReader) ->

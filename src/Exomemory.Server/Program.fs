@@ -1,4 +1,4 @@
-module Exomemory.App
+module Exomemory.Server.App
 
 open System
 open Newtonsoft.Json
@@ -12,7 +12,7 @@ open Microsoft.Extensions.Hosting
 open Microsoft.Extensions.Logging
 open Microsoft.Extensions.DependencyInjection
 open Giraffe
-open Exomemory.HttpHandlers
+open Exomemory.Server.HttpHandlers
 
 // ---------------------------------
 // Web app

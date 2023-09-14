@@ -1,4 +1,4 @@
-module Exomemory.Models
+module Exomemory.Server.Models
 
 type Message =
     { Id: string

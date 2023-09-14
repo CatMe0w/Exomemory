@@ -5,10 +5,12 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="../../src/Exomemory/Exomemory.fsproj" />
+    <ProjectReference Include="..\..\src\Exomemory.Server\Exomemory.Server.fsproj" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="../../src/Exomemory/HttpHandlers.fs" />
+    <Compile Include="..\..\src\Exomemory.Server\HttpHandlers.fs">
+      <Link>HttpHandlers.fs</Link>
+    </Compile>
     <Compile Include="Tests.fs" />
   </ItemGroup>
   <ItemGroup>

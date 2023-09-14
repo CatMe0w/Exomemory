@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
-        <AssemblyName>Exomemory.App</AssemblyName>
+        <AssemblyName>Exomemory.Server.App</AssemblyName>
         <EnableDefaultContentItems>false</EnableDefaultContentItems>
         <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
         <ContainerImageName>Exomemory</ContainerImageName>
