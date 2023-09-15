@@ -17,8 +17,8 @@ open Microsoft.Extensions.DependencyInjection
 let createHost () =
     WebHostBuilder()
         .UseContentRoot(Directory.GetCurrentDirectory())
-        .Configure(Action<IApplicationBuilder> Exomemory.App.configureApp)
-        .ConfigureServices(Action<IServiceCollection> Exomemory.App.configureServices)
+        .Configure(Action<IApplicationBuilder> Exomemory.Server.App.configureApp)
+        .ConfigureServices(Action<IServiceCollection> Exomemory.Server.App.configureServices)
 
 let runTask task =
     task |> Async.AwaitTask |> Async.RunSynchronously
