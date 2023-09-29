@@ -18,7 +18,7 @@ paths:
   /overview:
     get:
       summary: Overview
-      description: List all rooms and show recent 500 messages of all rooms
+      description: List all rooms and show recent 100 messages of all rooms
       operationId: overview
       responses:
         '200':
@@ -58,7 +58,7 @@ paths:
   /search/usernames?keyword={keyword}&page={page}&timeafter={timeAfter}&timebefore={timeBefore}&roomid={roomId}:
     get:
       summary: Search usernames
-      description: Search usernames and return recent 500 messages of matched users
+      description: Search usernames and return recent 100 messages of matched users
       operationId: searchUsernames
       parameters:
         - name: keyword
@@ -101,7 +101,7 @@ paths:
   /search/messages?keyword={keyword}&page={page}&timeafter={timeAfter}&timebefore={timeBefore}&roomid={roomId}:
     get:
       summary: Search messages
-      description: Search messages and return recent 500 messages
+      description: Search messages and return recent 100 messages
       operationId: searchMessages
       parameters:
         - name: keyword
@@ -144,7 +144,7 @@ paths:
   /lookup/user?id={id}&page={page}&timeafter={timeAfter}&timebefore={timeBefore}&roomid={roomId}:
     get:
       summary: Lookup user
-      description: Return recent 500 messages of this user
+      description: Return recent 100 messages of this user
       operationId: lookupUser
       parameters:
         - name: id
@@ -187,7 +187,7 @@ paths:
   /lookup/message?id={messageId}&pagination={pagination}:
     get:
       summary: Lookup message
-      description: Return messages with recent 250 messages before the given message id and 250 messages after the given message id, 500 messages in total
+      description: Return messages with recent 50 messages before the given message id and 50 messages after the given message id, 100 messages in total
       operationId: lookupMessage
       parameters:
         - name: messageId
@@ -215,7 +215,7 @@ paths:
   /lookup/room?id={roomId}&page={page}&timeafter={timeAfter}&timebefore={timeBefore}:
     get:
       summary: Lookup room
-      description: Return recent 500 messages of this room
+      description: Return recent 100 messages of this room
       operationId: lookupRoom
       parameters:
         - name: roomId

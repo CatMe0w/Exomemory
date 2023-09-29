@@ -62,7 +62,7 @@ let retrieveGlobalLatestMessages connectionString =
         "SELECT *
         FROM messages
         ORDER BY time DESC
-        LIMIT 501
+        LIMIT 101
         OFFSET 0;"
     |> Sql.execute makeMessageModel
 
@@ -96,11 +96,11 @@ let searchUsernames connectionString ftsConfig keyword page timeAfter timeBefore
         AND time <= @timeBefore
         %s{matchRoomIdSql roomId}
         ORDER BY time DESC
-        LIMIT 501
+        LIMIT 101
         OFFSET @page;"
     |> Sql.parameters (
         [ "keyword", Sql.text keyword
-          "page", Sql.int64 ((page - 1L) * 500L)
+          "page", Sql.int64 ((page - 1L) * 100L)
           "timeAfter", Sql.int64 timeAfter
           "timeBefore", Sql.int64 timeBefore ]
         @ matchRoomIdSqlProps roomId
@@ -118,11 +118,11 @@ let searchMessages connectionString ftsConfig keyword page timeAfter timeBefore 
         AND time <= @timeBefore
         %s{matchRoomIdSql roomId}
         ORDER BY time DESC
-        LIMIT 501
+        LIMIT 101
         OFFSET @page;"
     |> Sql.parameters (
         [ "keyword", Sql.text keyword
-          "page", Sql.int64 ((page - 1L) * 500L)
+          "page", Sql.int64 ((page - 1L) * 100L)
           "timeAfter", Sql.int64 timeAfter
           "timeBefore", Sql.int64 timeBefore ]
         @ matchRoomIdSqlProps roomId
@@ -140,11 +140,11 @@ let lookupUser connectionString id page timeAfter timeBefore roomId =
         AND time <= @timeBefore
         %s{matchRoomIdSql roomId}
         ORDER BY time DESC
-        LIMIT 501
+        LIMIT 101
         OFFSET @page;"
     |> Sql.parameters(
         [ "id", Sql.text id
-          "page", Sql.int64 ((page - 1L) * 500L)
+          "page", Sql.int64 ((page - 1L) * 100L)
           "timeAfter", Sql.int64 timeAfter
           "timeBefore", Sql.int64 timeBefore ]
         @ matchRoomIdSqlProps roomId
@@ -164,14 +164,14 @@ let lookupMessage connectionString messageId =
                WHERE time >= (SELECT time FROM t)
                  AND "roomId" = (SELECT "roomId" FROM t)
                ORDER BY time
-               LIMIT 250)
+               LIMIT 50)
               UNION
               (SELECT b.*
                FROM messages b
                WHERE time < (SELECT time FROM t)
                  AND "roomId" = (SELECT "roomId" FROM t)
                ORDER BY time DESC
-               LIMIT 251)) x
+               LIMIT 51)) x
         ORDER BY time;"""
     |> Sql.parameters [ "messageId", Sql.text messageId ]
     |> Sql.execute makeMessageModel
@@ -189,7 +189,7 @@ let lookupMessagePrevPage connectionString messageId =
               WHERE time >= (SELECT time FROM t)
                 AND "roomId" = (SELECT "roomId" FROM t)
               ORDER BY time DESC
-              LIMIT 501) x
+              LIMIT 101) x
         ORDER BY time;"""
     |> Sql.parameters [ "messageId", Sql.text messageId ]
     |> Sql.execute makeMessageModel
@@ -206,7 +206,7 @@ let lookupMessageNextPage connectionString messageId =
         WHERE time < (SELECT time FROM t)
           AND "roomId" = (SELECT "roomId" FROM t)
         ORDER BY time
-        LIMIT 501;"""
+        LIMIT 101;"""
     |> Sql.parameters [ "messageId", Sql.text messageId ]
     |> Sql.execute makeMessageModel
 
@@ -220,11 +220,11 @@ let lookupRoom connectionString roomId page timeAfter timeBefore =
         AND time >= @timeAfter
         AND time <= @timeBefore
         ORDER BY time DESC
-        LIMIT 501
+        LIMIT 101
         OFFSET @page;"
     |> Sql.parameters
         [ "roomId", Sql.int64 roomId
-          "page", Sql.int64 ((page - 1L) * 500L)
+          "page", Sql.int64 ((page - 1L) * 100L)
           "timeAfter", Sql.int64 timeAfter
           "timeBefore", Sql.int64 timeBefore ]
     |> Sql.execute makeMessageModel
