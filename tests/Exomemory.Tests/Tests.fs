@@ -77,6 +77,15 @@ let ``Route /overview returns a Room list and a Message list`` () =
     |> shouldContain "\"rooms\":" // TODO
 
 [<Fact>]
+let ``Route without authorization returns 401 Unauthorized`` () =
+    use server = new TestServer(createHost ())
+    use client = server.CreateClient()
+
+    client
+    |> httpGet "/overview"
+    |> isStatus HttpStatusCode.Unauthorized
+
+[<Fact>]
 let ``Route which doesn't exist returns 404 Page not found`` () =
     use server = new TestServer(createHost ())
     use client = server.CreateClient()
