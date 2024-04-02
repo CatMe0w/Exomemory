@@ -1,3 +1,5 @@
+### Development postponed indefinitely due to [annihilation of upstream projects](https://wiki.mrxiaom.top/mirai/sign.html).
+
 # Exomemory
 
 _'Blink, in retrospect._
@@ -20,27 +22,27 @@ And eventually it became something different.
 
 An Icalingua++ format chat history database in PostgreSQL with a full text search configuration of Chinese language (e.g. zhparser)
 
-> Elasticsearch and/or other databases are not planned to be supported shortly in this version of Exomemory.
+Elasticsearch and/or other databases are not planned to be supported shortly in this version of Exomemory.
 
 ## Quick start
 
-> HTTPS is highly recommended - transferring your chat history in plaintext ~~is absolutely insane~~ is not a good idea. You can use a reverse proxy like Nginx to enable HTTPS if deploying with Docker.
+HTTPS is highly recommended - transferring your chat history in plaintext ~~is absolutely insane~~ is not a good idea. You can use a reverse proxy like Nginx to enable HTTPS if deploying with Docker.
 
 ### Docker
 
 - Download src/Exomemory/appsettings.json and fill in the values
-- ```docker run -d -p 127.0.0.1:5000:5000 -v /path/to/appsettings.json:/app/appsettings.json ghcr.io/CatMe0w/Exomemory```
+- ~~```docker run -d -p 127.0.0.1:5000:5000 -v /path/to/appsettings.json:/app/appsettings.json ghcr.io/CatMe0w/Exomemory```~~
 - Deploy or configure your reverse proxy like Nginx to enable HTTPS and expose the application to the Internet
 - Open https://exomemory.catme0w.org, enter your Exomemory server URL, your username and password
 
-> Your chat history won't be sent to us. Learn more about the dashboard application: https://github.com/CatMe0w/exomemory_dashboard
+> Your chat history won't be sent to us. Learn more about the dashboard application: https://github.com/CatMe0w/exomemory-dashboard
 
 ### Without Docker
 
 - Clone the repository
 - Edit the src/Exomemory/appsettings.json file and fill in the values
 - Read below sections to build and run the application
-- Open https://exomemory.catme0w.org, enter your Exomemory server URL, your username and password
+- Open ~~https://exomemory.catme0w.org~~, enter your Exomemory server URL, your username and password
 
 ## Build and test the application
 
